@@ -156,16 +156,6 @@ export class SchedulerEditorCard extends LitElement {
               : localize('ui.panel.entity_picker.no_entities_for_group', getLocale(this.hass))}
           </button-group>
 
-          <div class="header">${this.hass.localize('ui.panel.config.automation.editor.actions.name')}</div>
-          <button-group
-            .items=${actions}
-            .value=${actions.findIndex(e => isEqual(e, this.selectedAction))}
-            @change=${(ev: CustomEvent) => this.selectAction(ev.detail)}
-          >
-            ${!this.selectedEntities.length
-              ? localize('ui.panel.entity_picker.no_entity_selected', getLocale(this.hass))
-              : localize('ui.panel.entity_picker.no_actions_for_entity', getLocale(this.hass))}
-          </button-group>
           ${this.makeSchemeButton(actions)}
         </div>
         <div class="card-actions">
@@ -180,7 +170,7 @@ export class SchedulerEditorCard extends LitElement {
   makeSchemeButton(actionConfig: Action[]) {
     if (!actionConfig.length || !this.hass) return html``;
     return html`
-      <div class="header">${this.hass.localize('ui.panel.config.automation.editor.conditions.type.or.label')}</div>
+      <div class="header">${this.hass.localize('ui.panel.config.automation.editor.actions.name')}</div>
       <div class="option-list">
         <mwc-button
           class="${this.timeSchemeSelected ? ' active' : ''}"
